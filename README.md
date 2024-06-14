@@ -9,26 +9,7 @@
 ## Build & Run
 
 1. Copy the contents of the `.env.example` file to a `.env` next to it, and edit it with your values.
-2. Run `yarn build` or `npm build` to build the files.
-3. Run `yarn start` or `npm start` to start the application.
-
--   You can run `yarn dev` or `npm dev` to combine the 2 steps above, while listening to changes and restarting automatically.
-
-## Run with Docker
-
-1. Build:
-
-    ```
-    docker build -t my-app .
-    ```
-
-    Replacing `my-app` with the image name.
-
-2. Run
-    ```
-    docker run -d -p 3000:3000 my-app
-    ```
-    Replacing `my-app` with the image name, and `3000:3000` with the `host:container` ports to publish.
+2. Run `yarn start` or `npm start` to start the application.
 
 ## Developing
 
