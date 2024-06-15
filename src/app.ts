@@ -5,7 +5,7 @@
 import * as dotenv from 'dotenv';
 import { ZkLinkProvider } from './rpc/provider';
 import { ZkLinkWallet } from './rpc/wallet';
-import { JsonRpcProvider, keccak256, solidityPacked } from 'ethers';
+import { JsonRpcProvider, keccak256 } from 'ethers';
 import { ZkLinkPeriphery__factory } from './types';
 dotenv.config();
 
@@ -58,6 +58,8 @@ async function main() {
   const correctAf = keccak256(activeWallet.pubkeyHash());
   if (correctAf.toLowerCase() !== af.toLowerCase()) {
     console.warn(`You should firstly call setAuthPubkeyHash with args: [${activeWallet.pubkeyHash()}, ${targetAccount.nonce}]`);
+    const encodeData = zkLinkContract.interface.encodeFunctionData('setAuthPubkeyHash', [activeWallet.pubkeyHash(), targetAccount.nonce]);
+    console.warn(`The setAuthPubkeyHash encode function data: ${encodeData}`);
     return;
   }
   const txHash = await activeWallet.changePubKey(CHAIN_ID, targetAccount.id, 0, targetAccount.nonce, chainConfig.gasTokenId, "0");
