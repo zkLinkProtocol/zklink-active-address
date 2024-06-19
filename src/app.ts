@@ -56,6 +56,7 @@ async function main() {
   const af = await zkLinkContract.authFacts(TARGET_ADDRESS, targetAccount.nonce);
   console.log(`The auth fact onchain: ${af}`);
   const correctAf = keccak256(activeWallet.pubkeyHash());
+  console.log(`The correct fact: ${correctAf}`);
   if (correctAf.toLowerCase() !== af.toLowerCase()) {
     console.warn(`You should firstly call setAuthPubkeyHash with args: [${activeWallet.pubkeyHash()}, ${targetAccount.nonce}]`);
     const encodeData = zkLinkContract.interface.encodeFunctionData('setAuthPubkeyHash', [activeWallet.pubkeyHash(), targetAccount.nonce]);
